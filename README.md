@@ -55,6 +55,39 @@ ITB validator service instance via [Docker](https://www.docker.com/) are also
 provided (see `Makefile`, `validation_runner.py` and `docker-compose.yml`
 respectively).
 
+### How to use
+**Validator Options**
+This validator has two modes OWL and SHACL and for each there are two options available: basic and advanced. The difference between the two options is the number of input files. In basic, only one input is taken, while in advanced, additional SHACL shape files can be provided to augment the validation. For easy use, choose the basic option as no input (other than the OWL or SHACL file to validate) is necessary and the validator's default SHACL shapes are used.
+
+**Input File**
+This file must be a valid (OWL or SHACL) RDF file. The syntax (serialization) can be set but otherwise will default to be automatically guessed from the file extension.
+
+**Sample OWL file in Turtle (TTL) syntax:**
+@prefix ex: <http://example.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:Person a owl:Class .
+ex:Human a owl:Class .
+ex:Person rdfs:subClassOf ex:Human .
+ex:name a owl:DatatypeProperty .
+ex:hasFriend a owl:ObjectProperty .
+
+**Sample SHACL file in Turtle (TTL) syntax:**
+@prefix ex: <http://example.org/> .
+@prefix exsh: <http://example.org/shapes/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+exsh:PersonShape a sh:NodeShape ;
+sh:targetClass ex:Person ;
+sh:property [
+sh:path rdfs:label ;
+sh:minCount 1
+]
+.
+
 ### Environment
 
 The unit testing component is a Python 3.8+ project. You may want to create a
