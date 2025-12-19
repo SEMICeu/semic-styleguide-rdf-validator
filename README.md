@@ -65,7 +65,7 @@ This validator has two modes OWL and SHACL and for each there are two options av
 This file must be a valid (OWL or SHACL) RDF file. The syntax (serialization) can be set but otherwise will default to be automatically guessed from the file extension.
 
 **Sample OWL file in Turtle (TTL) syntax:**
-
+```bash
 @prefix ex: <http://example.org/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -75,9 +75,9 @@ ex:Human a owl:Class .
 ex:Person rdfs:subClassOf ex:Human .
 ex:name a owl:DatatypeProperty .
 ex:hasFriend a owl:ObjectProperty .
-
+```
 **Sample SHACL file in Turtle (TTL) syntax:**
-
+```bash
 @prefix ex: <http://example.org/> .
 @prefix exsh: <http://example.org/shapes/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -91,7 +91,7 @@ sh:path rdfs:label ;
 sh:minCount 1
 ]
 .
-
+```
 ### Environment
 
 The unit testing component is a Python 3.8+ project. You may want to create a
